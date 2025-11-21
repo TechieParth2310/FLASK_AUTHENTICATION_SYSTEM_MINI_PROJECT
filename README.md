@@ -151,19 +151,9 @@ This project is open-source and free to use.
 Parth Kothawade
 🔥 Passionate Python & Flask Developer
 
-yaml
-Copy code
 
----
 
-# ❤️ Done Bhai!
 
-Agar tu chahe to main:
-- README me **badhiya screenshots** add kar du  
-- GitHub ke liye **project banner** bana du  
-- Deployment ke steps de du  
-
-Bol de — "banner bana de" ya "deploy karna hai"
 
 
 
