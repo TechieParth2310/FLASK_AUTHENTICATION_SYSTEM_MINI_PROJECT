@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title or "Flask Auth App" }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- IMPORTANT → Flexbox used for sticky footer -->
+
+<body class="app-body">
+
+    <!-- Background Layer -->
+    <div class="app-gradient-bg"></div>
+
+    <!-- This container grows (flex:1) and pushes footer down -->
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header glass-panel">
+            <div class="app-logo">
+                <span class="logo-icon">🔐</span>
+                <span class="logo-text">Flask Auth</span>
+            </div>
+
+            <nav class="app-nav">
+                <a href="{{ url_for('home') }}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    Home
+                </a>
+
+                <a href="{{ url_for('register_page') }}"
+                    class="nav-link {% if '/register' in request.path %}active{% endif %}">
+                    Register
+                </a>
+
+                <a href="{{ url_for('login_page') }}"
+                    class="nav-link {% if '/login' in request.path %}active{% endif %}">
+                    Login
+                </a>
+
+                <a href="{{ url_for('dashboard') }}"
+                    class="nav-link {% if '/dashboard' in request.path %}active{% endif %}">
+                    Dashboard
+                </a>
+                <a href="{{ url_for('profile') }}"
+                    class="nav-link {% if '/profile' in request.path %}active{% endif %}">
+                    Profile
+                </a>
+                <button id="themeToggle" class="theme-btn">🌓</button>
+
+            </nav>
+        </header>
+
+        <!-- Flash Alerts -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, msg in messages %}
+        <div class="flash flash-{{ category }}">
+            {{ msg }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+
+        <!-- Main Content (Flex grows) -->
+        <main class="app-main">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div> <!-- END .app-container -->
+
+    <!-- Sticky Footer -->
+    <footer class="app-footer">
+        <span>© {{ 2025 }} Flask Authentication Mini Project</span>
+        <span class="footer-accent">Built with Flask ⚙️ & MySQL 🐬</span>
+    </footer>
+<script>
+    const toggle = document.getElementById("themeToggle");
+
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+
+        // Save preference
+        if (document.body.classList.contains("light")) {
+            localStorage.setItem("theme", "light");
+        } else {
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
+    // Load saved preference
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light");
+    }
+</script>
+
+</body>
+
+</html>

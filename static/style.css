@@ -1,0 +1,532 @@
+/* =========================================
+   GLOBAL RESET & BASE
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+:root {
+    --bg-primary: #0a0f1f;
+    --text-primary: white;
+    --card-bg: rgba(255, 255, 255, 0.04);
+}
+
+.light {
+    --bg-primary: #f7f7f7;
+    --text-primary: #222;
+    --card-bg: white;
+}
+
+body.app-body {
+    display: flex;
+    flex-direction: column;       /* Enables sticky footer */
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background glow */
+.app-gradient-bg {
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle at top left,
+        rgba(0, 110, 255, 0.25),
+        transparent 60%);
+    z-index: -1;
+}
+
+/* =========================================
+   MAIN LAYOUT CONTAINER
+========================================= */
+.app-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px;
+    flex: 1;  /* STICKY FOOTER MAGIC */
+}
+
+/* =========================================
+   NAVBAR / HEADER
+========================================= */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    margin-bottom: 45px;
+    border-radius: 14px;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.app-nav {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #9ab4ff;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: 0.25s ease;
+    letter-spacing: 0.2px;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    border-bottom: 2px solid #4f7cff;
+}
+
+/* =========================================
+   MAIN CONTENT BOX
+========================================= */
+.app-main {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 45px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    min-height: 380px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================
+   HEADINGS
+========================================= */
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 26px;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #94a4c7;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   FORM ELEMENTS
+========================================= */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 350px;
+    margin-top: 10px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.input-box label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #c7d3ff;
+}
+
+.input-box input {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    outline: none;
+    transition: 0.25s ease;
+    font-size: 15px;
+}
+
+.input-box input:focus {
+    border-color: #4f7cff;
+    box-shadow: 0px 0px 8px rgba(79, 124, 255, 0.5);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px;
+    background: #4f7cff;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn:hover {
+    background: #3c63cc;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.app-footer {
+    text-align: center;
+    padding: 18px;
+    color: #7f8dbb;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    margin-top: 35px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+}
+
+.footer-accent {
+    color: #4f7cff;
+    margin-left: 8px;
+}
+/* AUTH BOX WRAPPER */
+.auth-box {
+    max-width: 450px;
+    margin: auto;
+    text-align: left;
+}
+
+/* Optional: animate appearance */
+.auth-box {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.subtitle {
+    font-size: 15px;
+    color: #9ab4ff;
+    margin-bottom: 25px;
+}
+/* ================================
+   DASHBOARD PAGE
+================================ */
+
+.dashboard-box {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Welcome Section */
+.dash-welcome {
+    margin-bottom: 35px;
+}
+
+.dash-welcome h1 {
+    font-size: 32px;
+    color: #4f7cff;
+    margin-bottom: 10px;
+}
+
+.dash-welcome p {
+    color: #9db3ff;
+    font-size: 15px;
+}
+
+/* Grid Layout */
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+/* Dashboard Cards */
+.dash-card {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0px 4px 25px rgba(0,0,0,0.25);
+}
+
+.dash-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #4f7cff;
+}
+
+.dash-card p {
+    color: #b4c4f7;
+    font-size: 14px;
+}
+
+.dash-card:hover {
+    transform: translateY(-7px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #4f7cff;
+}
+
+/* Logout Card Special */
+.dash-logout:hover {
+    background: rgba(255, 70, 70, 0.15);
+    border-color: #ff5c5c;
+}
+/* ================================
+   LIST PAGE
+================================ */
+
+.list-box {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.styled-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 16px;
+    color: #dbe4ff;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-bullet {
+    width: 10px;
+    height: 10px;
+    background: #4f7cff;
+    border-radius: 50%;
+    display: inline-block;
+}
+/* ================================
+   STATUS PAGE
+================================ */
+
+.status-card {
+    margin-top: 20px;
+    padding: 22px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    text-align: center;
+}
+
+.status-text {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.status-text.adult {
+    color: #7fffda; /* light teal */
+}
+
+.status-text.minor {
+    color: #ff9f9f; /* baby red */
+}
+/* ================================
+   BEAUTIFUL TABLE DESIGN
+================================ */
+
+.table-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    overflow-x: auto;
+}
+
+.nice-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e5e9ff;
+}
+
+.nice-table thead tr {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nice-table th, .nice-table td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.nice-table tbody tr {
+    transition: 0.25s;
+}
+
+.nice-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nice-table th {
+    font-weight: 600;
+    color: #aab8ff;
+    font-size: 15px;
+}
+
+.nice-table td {
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+/* ================================
+   HOME PAGE
+================================ */
+
+.home-box {
+    text-align: center;
+    margin-top: 60px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.home-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #4f7cff;
+    margin-bottom: 15px;
+}
+
+.home-subtitle {
+    font-size: 18px;
+    color: #9ab7ff;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.home-buttons {
+    margin-top: 25px;
+}
+
+.btn-secondary {
+    background-color: #3c63cc !important;
+    margin-left: 12px;
+}
+.flash {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-weight: 500;
+    animation: slideDown 0.5s ease;
+}
+
+.flash-success {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+}
+
+.flash-error {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.dash-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(79,124,255,0.4);
+}
+.dash-card a {
+    text-decoration: none;
+    color: inherit; /* same color rakhe */
+}
+
+.dash-card a:hover {
+    text-decoration: none;
+}
+/* Remove underline from all links */
+a {
+    text-decoration: none;
+}
+
+/* Optional: On hover underline disable */
+a:hover {
+    text-decoration: none;
+}
+/* ================================
+   PROFILE PAGE
+================================ */
+
+.profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #4f7cff;
+}
+
+.profile-card {
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    line-height: 1.8;
+}
+
+.profile-card p {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+.theme-btn {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
